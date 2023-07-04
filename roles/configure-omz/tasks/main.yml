@@ -5,12 +5,14 @@
   package:
     name: "{{ omz_dependencies }}"
     state: "present"
+
 - name: "Clone OMZ repo"
   become: true
   become_user: "{{ ansible_env.USER }}"
   git:
     repo: "https://github.com/ohmyzsh/ohmyzsh.git"
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
+
 - name: "Write .zshrc"
   become: true
   become_user: "{{ ansible_env.USER }}"
@@ -18,12 +20,22 @@
     src: "zshrc.j2"
     dest: "{{ ansible_env.HOME }}/.zshrc"
     backup: true
+
 - name: "Clone powerlevel10k theme repo"
   become: true
   become_user: "{{ ansible_env.USER }}"
   git:
     repo: "https://github.com/romkatv/powerlevel10k.git"
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
+
+- name: "Copy p10k configuration file"
+  copy:
+    src: "{{ role_path }}/files/.p10k.zsh"
+    dest: "{{ ansible_env.HOME }}/.p10k.zsh"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+    mode: "u=rw,g=r,o=r"
+
 - name: "Clone plugin repos"
   become: true
   become_user: "{{ ansible_env.USER }}"
@@ -34,6 +46,7 @@
   with_items: "{{ plugins }}"
   loop_control:
     loop_var: "plugin"
+
 - name: "Set default shell"
   become: true
   user:

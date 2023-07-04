@@ -1,0 +1,41 @@
+---
+- name: "Install dependencies"
+  become: true
+  become_method: "sudo"
+  package:
+    name: "{{ omz_dependencies }}"
+    state: "present"
+- name: "Clone OMZ repo"
+  become: true
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/ohmyzsh/ohmyzsh.git"
+    dest: "~{{ username }}/.oh-my-zsh"
+- name: "Write .zshrc"
+  become: true
+  become_user: "{{ username }}"
+  template:
+    src: "zshrc.j2"
+    dest: "~{{ username }}/.zshrc"
+    backup: true
+- name: "Clone powerlevel10k theme repo"
+  become: true
+  become_user: "{{ username }}"
+  git:
+    repo: "https://github.com/romkatv/powerlevel10k.git"
+    dest: "~{{ username }}/.oh-my-zsh/custom/themes/powerlevel10k"
+- name: "Clone plugin repos"
+  become: true
+  become_user: "{{ username }}"
+  git:
+    repo: "{{ plugin.repo }}"
+    dest: "~{{ username }}/.oh-my-zsh/custom/plugins/{{ plugin.name }}"
+  when: plugin.repo is defined
+  with_items: "{{ plugins }}"
+  loop_control:
+    loop_var: "plugin"
+- name: "Set default shell"
+  become: true
+  user:
+    name: "{{ username }}"
+    shell: "/usr/bin/zsh"

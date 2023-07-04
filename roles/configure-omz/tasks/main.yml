@@ -7,29 +7,29 @@
     state: "present"
 - name: "Clone OMZ repo"
   become: true
-  become_user: "{{ username }}"
+  become_user: "{{ ansible_env.USER }}"
   git:
     repo: "https://github.com/ohmyzsh/ohmyzsh.git"
-    dest: "~{{ username }}/.oh-my-zsh"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
 - name: "Write .zshrc"
   become: true
-  become_user: "{{ username }}"
+  become_user: "{{ ansible_env.USER }}"
   template:
     src: "zshrc.j2"
-    dest: "~{{ username }}/.zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
     backup: true
 - name: "Clone powerlevel10k theme repo"
   become: true
-  become_user: "{{ username }}"
+  become_user: "{{ ansible_env.USER }}"
   git:
     repo: "https://github.com/romkatv/powerlevel10k.git"
-    dest: "~{{ username }}/.oh-my-zsh/custom/themes/powerlevel10k"
+    dest: "~{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
 - name: "Clone plugin repos"
   become: true
-  become_user: "{{ username }}"
+  become_user: "{{ ansible_env.USER }}"
   git:
     repo: "{{ plugin.repo }}"
-    dest: "~{{ username }}/.oh-my-zsh/custom/plugins/{{ plugin.name }}"
+    dest: "~{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/{{ plugin.name }}"
   when: plugin.repo is defined
   with_items: "{{ plugins }}"
   loop_control:
@@ -37,5 +37,5 @@
 - name: "Set default shell"
   become: true
   user:
-    name: "{{ username }}"
+    name: "{{ ansible_env.USER }}"
     shell: "/usr/bin/zsh"

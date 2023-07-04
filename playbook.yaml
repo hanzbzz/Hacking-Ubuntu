@@ -9,7 +9,6 @@
         msg: "{{ ansible_user_id }}"
   roles:
     - role: "roles/configure-omz"
-      username: "{{ ansible_user_id }}"
       # ommit the repo attribute if the plugin is in the default plugin dir
       plugins:
         - name: "git"

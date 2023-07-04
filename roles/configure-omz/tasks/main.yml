@@ -23,13 +23,13 @@
   become_user: "{{ ansible_env.USER }}"
   git:
     repo: "https://github.com/romkatv/powerlevel10k.git"
-    dest: "~{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
 - name: "Clone plugin repos"
   become: true
   become_user: "{{ ansible_env.USER }}"
   git:
     repo: "{{ plugin.repo }}"
-    dest: "~{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/{{ plugin.name }}"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/{{ plugin.name }}"
   when: plugin.repo is defined
   with_items: "{{ plugins }}"
   loop_control:

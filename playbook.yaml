@@ -1,0 +1,19 @@
+---
+- name: "Ubuntu customization for HTB"
+  # apply only to localhost
+  hosts: "localhost"
+  connection: "local"
+  tasks:
+    - name: "Test"
+      debug:
+        msg: "{{ ansible_user_id }}"
+  roles:
+    - role: "roles/configure-omz"
+      username: "{{ ansible_user_id }}"
+      # ommit the repo attribute if the plugin is in the default plugin dir
+      plugins:
+        - name: "git"
+        - name: "zsh-autosuggestions"
+          repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
+        - name: "zsh-syntax-highlighting"
+          repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"

@@ -12,3 +12,4 @@
           repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
         - name: "zsh-syntax-highlighting"
           repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+    - role: "roles/customize-terminal"

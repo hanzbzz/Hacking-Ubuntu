@@ -3,10 +3,6 @@
   # apply only to localhost
   hosts: "localhost"
   connection: "local"
-  tasks:
-    - name: "Test"
-      debug:
-        msg: "{{ ansible_user_id }}"
   roles:
     - role: "roles/configure-omz"
       # ommit the repo attribute if the plugin is in the default plugin dir

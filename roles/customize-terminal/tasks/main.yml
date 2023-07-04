@@ -3,16 +3,12 @@
 - name: "Install dependencies"
   pip:
     name: "psutil"
+
 - name: "Read current gnome terminal profiles"
   dconf:
     key: "/org/gnome/terminal/legacy/profiles:/list"
     state: "read"
   register: "profile_list"
-
-- name: "Set profile UUID"
-  set_fact:
-    # needed for gnore terminal to recognize the profile
-    profile_uuid: "d28cbbb3-9ec2-47d4-92a7-c2960facbcc6"
 
 - name: "Set profile_list if it doesn't exist"
   set_fact:
@@ -20,17 +16,8 @@
       value: '["default"]'
   when: profile_list.value is none
 
-- name: "Adding my profile"
-  set_fact:
-    new_profile_list: "{{ profile_list.value | regex_replace(']$', \", '{{ profile_uuid }}']\") }}"
-
-- name: "Writing updated profile list"
-  dconf:
-    key: "/org/gnome/terminal/legacy/profiles:/list"
-    value: "{{ new_profile_list }}"
-  when: profile_uuid not in profile_list.value
-
 - name: "Restoring my profile from dump"
   shell:
-    cmd: "dconf load /org/gnome/terminal/legacy/profiles:/:{{ profile_uuid }}/ < {{ role_path }}/files/dconf-dump"
-  when: profile_uuid not in profile_list.value
+    cmd: "dconf load /org/gnome/terminal/legacy/profiles:/ < {{ role_path }}/files/dconf-profiles-dump"
+  # only load once
+  when: "'d28cbbb3-9ec2-47d4-92a7-c2960facbcc6' not in profile_list.value"

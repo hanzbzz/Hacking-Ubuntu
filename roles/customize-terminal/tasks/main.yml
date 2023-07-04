@@ -22,7 +22,7 @@
 
 - name: "Adding my profile"
   set_fact:
-    new_profile_list: "{{ profile_list.value | regex_replace(']$', \", {{ profile_uuid }}]\") }}"
+    new_profile_list: "{{ profile_list.value | regex_replace(']$', \", '{{ profile_uuid }}']\") }}"
 
 - name: "Writing updated profile list"
   dconf:

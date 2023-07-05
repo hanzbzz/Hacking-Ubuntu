@@ -1,0 +1,7 @@
+---
+- name: "Install jmespath for BurpSuite role"
+  pip:
+    name: "jmespath"
+- name: "Install BurpSuite"
+  include_role:
+    name: "iesplin.burp_suite"

@@ -1,0 +1,4 @@
+- name: "Installing Packages"
+  gem:
+    name: "wpscan"
+    state: "present"

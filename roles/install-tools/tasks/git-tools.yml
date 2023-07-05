@@ -1,0 +1,40 @@
+---
+- name: "Check if metasploit is installed"
+  stat: 
+    path : "/usr/bin/msfconsole"
+  register: msfconsole_stat
+
+- name: "Install metasploit"
+  shell: "curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb -o /tmp/msfinstall && chmod 755 /tmp/msfinstall && /tmp/msfinstall && rm /tmp/msfinstall"
+  when: not msfconsole_stat.stat.exists
+
+- name: "Clone sqlmap repo"
+  git:
+    repo: "https://github.com/sqlmapproject/sqlmap.git"
+    dest: "/opt/sqlmap"
+
+- name: "Check if John is installed"
+  stat: 
+    path : "/opt/john"
+  register: john_stat
+
+- name: "Clone John repo"
+  shell: "git clone https://github.com/openwall/john.git /opt/john && cd /opt/john/src && ./configure --without-openssl && make "
+  when: not john_stat.stat.exists
+
+- name: "Clone Responder repo"
+  git:
+    repo: "https://github.com/lgandx/Responder"
+    dest: "/opt/responder"
+
+- name: "Clone Impacket repo"
+  git:
+    repo: "https://github.com/fortra/impacket.git"
+    dest: "/opt/impacket"
+
+- name: "Clone seclists repo"
+  become: true
+  become_method: "sudo"
+  git:
+    name: "https://github.com/danielmiessler/SecLists.git"
+    dest: "/usr/share/seclists"

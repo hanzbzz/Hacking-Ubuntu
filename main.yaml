@@ -13,3 +13,10 @@
         - name: "zsh-syntax-highlighting"
           repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
     - role: "roles/customize-terminal"
+    - role: gantsign.visual-studio-code
+      users:
+        - username: "{{ ansible_user_id }}"
+          visual_studio_code_extensions:
+            - "ms-python.python"
+            - "redhat.vscode-yaml"
+            - "DEVSENSE.phptools-vscode"

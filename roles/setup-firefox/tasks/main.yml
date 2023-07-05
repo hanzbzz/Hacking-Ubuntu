@@ -1,5 +1,5 @@
 ---
-- name: "Create policies folder"
+- name: "Create policies dir"
   become: true
   become_method: "sudo"
   file:
@@ -7,6 +7,20 @@
     state: "directory"
     mode: "0755"
 
+- name: "Create custom_certs dir"
+  become: true
+  become_method: "sudo"
+  file:
+    path: "/etc/firefox/custom_certs"
+    state: "directory"
+    mode: "0755"
+
+- name: "Copy PortSwigger CA cert to custom_certs dir"
+  become: true
+  become_method: "sudo"
+  copy:
+    src: "{{ burpsuite_dir }}/extras/PortSwigger_CA.der"
+    dest: "/etc/firefox/custom_certs/PortSwigger_CA.der"
 
 - name: "Write the policies.json template file"
   become: true

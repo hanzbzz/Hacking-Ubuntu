@@ -1,0 +1,19 @@
+---
+- name: "Create policies folder"
+  become: true
+  become_method: "sudo"
+  file:
+    path: "/etc/firefox/policies"
+    state: "directory"
+    mode: "0755"
+
+
+- name: "Write the policies.json template file"
+  become: true
+  become_method: "sudo"
+  template: 
+    src: "{{ role_path }}/templates/policies.json.j2"
+    dest: "/etc/firefox/policies/policies.json"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+    mode: "0664"

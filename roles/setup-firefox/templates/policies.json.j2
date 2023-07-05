@@ -1,0 +1,12 @@
+{
+    "policies":{
+        "DisableTelemetry":true,
+        "Extensions":{
+            "Install":[
+                {% for extension in firefox_extensions %}
+                "https://addons.mozilla.org/firefox/downloads/latest/{{ extension }}/latest.xpi"{{ ", " if not loop.last else "" }}
+                {% endfor %}
+            ]
+        }
+    }
+}

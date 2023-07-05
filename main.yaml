@@ -20,3 +20,4 @@
             - "ms-python.python"
             - "redhat.vscode-yaml"
             - "DEVSENSE.phptools-vscode"
+            - "redhat.ansible"

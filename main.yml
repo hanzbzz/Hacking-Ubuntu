@@ -3,10 +3,12 @@
   # apply only to localhost
   hosts: "localhost"
   connection: "local"
+  vars:
+    burpsuite_dir: "/opt/burpsuite"
   roles:
     - role: "roles/configure-omz"
     - role: "roles/customize-terminal"
-    - role: gantsign.visual-studio-code
+    - role: "gantsign.visual-studio-code"
       users:
         - username: "{{ ansible_env.USER }}"
           visual_studio_code_extensions:
@@ -14,4 +16,10 @@
             - "redhat.vscode-yaml"
             - "DEVSENSE.phptools-vscode"
             - "wholroyd.jinja"
+    - role: "roles/os-related-tasks"
+    - role: "roles/setup-burpsuite"
+      burpsuite_user: "{{ ansible_env.USER }}"
+      burpsuite_install_dir: "{{ burpsuite_dir }}"
+      # dir to save PortSwigger cert (later import to firefox)
+      burpsuite_extras_dir: "{{ burpsuite_dir }}/extras"
     - role: "roles/setup-firefox"

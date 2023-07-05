@@ -11,10 +11,10 @@ sudo whoami
 
 2. Download roles from Ansible Galaxy
 ```
-ansible-galaxy install -r requirements.yaml
+ansible-galaxy install -r requirements.yml
 ```
 
 3. Run the playbook
 ```
-ansible-playbook main.yaml
+ansible-playbook main.yml
 ```

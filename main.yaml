@@ -5,19 +5,13 @@
   connection: "local"
   roles:
     - role: "roles/configure-omz"
-      # ommit the repo attribute if the plugin is in the default plugin dir
-      plugins:
-        - name: "git"
-        - name: "zsh-autosuggestions"
-          repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
-        - name: "zsh-syntax-highlighting"
-          repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
     - role: "roles/customize-terminal"
     - role: gantsign.visual-studio-code
       users:
-        - username: "{{ ansible_user_id }}"
+        - username: "{{ ansible_env.USER }}"
           visual_studio_code_extensions:
             - "ms-python.python"
             - "redhat.vscode-yaml"
             - "DEVSENSE.phptools-vscode"
             - "wholroyd.jinja"
+    - role: "roles/setup-firefox"

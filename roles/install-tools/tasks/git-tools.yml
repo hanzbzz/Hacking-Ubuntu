@@ -18,7 +18,7 @@
     path : "/opt/john"
   register: john_stat
 
-- name: "Clone John repo"
+- name: "Install john"
   shell: "git clone https://github.com/openwall/john.git /opt/john && cd /opt/john/src && ./configure --without-openssl && make "
   when: not john_stat.stat.exists
 
@@ -34,7 +34,6 @@
 
 - name: "Clone seclists repo"
   become: true
-  become_method: "sudo"
   git:
     name: "https://github.com/danielmiessler/SecLists.git"
     dest: "/usr/share/seclists"

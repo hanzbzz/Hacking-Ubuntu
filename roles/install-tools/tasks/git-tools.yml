@@ -37,3 +37,12 @@
   git:
     name: "https://github.com/danielmiessler/SecLists.git"
     dest: "/usr/share/seclists"
+
+- name: "Check if feroxbuster is installed"
+  stat: 
+    path : "/home/{{ ansible_env.USER }}/.local/bin/feroxbuster"
+  register: feroxbuster_stat
+
+- name: "Install feroxbuster"
+  shell: "curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh | bash -s $HOME/.local/bin"
+  when: not feroxbuster_stat.stat.exists

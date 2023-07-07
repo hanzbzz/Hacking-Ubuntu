@@ -1,7 +1,6 @@
 ---
 - name: "Change ownership of /opt directory"
   become: true
-  become_method: "sudo"
   file:
     path: "/opt"
     owner: "{{ ansible_env.USER }}"

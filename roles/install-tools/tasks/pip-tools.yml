@@ -1,0 +1,21 @@
+---
+- name: "Install dependencies"
+  become: true
+  apt:
+    name:
+      - "python3-venv"
+
+- name: "Install pipx"
+  pip:
+    name:
+      - "pipx"
+
+- name: "Install pipx tools"
+  community.general.pipx:
+    name: "{{ item.name }}"
+    source: "{{ item.url }}"
+    state: latest
+  loop:
+    - { name: 'crackmapexec', url: 'git+https://github.com/mpgn/CrackMapExec.git' }
+    - { name: 'impacket', url: 'git+https://github.com/fortra/impacket.git' }
+    

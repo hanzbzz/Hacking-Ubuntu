@@ -1,0 +1,29 @@
+---
+- name: "Updating apt repo/cache"
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  become: true
+
+- name: "Upgrade all packages"
+  apt: upgrade=yes force_apt_get=yes
+  become: true
+
+- name: "Installing Packages"
+  package:
+    # selection of tools from https://www.kali.org/tools/
+    name:
+      - hydra
+      - curl
+      - nmap
+      - wireshark
+      - nikto
+      - ruby
+      - ruby-dev
+      - hashcat
+      - tcpdump
+      - gobuster
+      - ffuf
+      - cewl
+      - tmux
+      - php
+    state: latest
+  become: true

@@ -1,7 +1,6 @@
 ---
 - name: "Install dependencies"
   become: true
-  become_method: "sudo"
   package:
     name: "{{ omz_dependencies }}"
     state: "present"
@@ -43,7 +42,7 @@
     repo: "{{ plugin.repo }}"
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/{{ plugin.name }}"
   when: plugin.repo is defined
-  with_items: "{{ plugins }}"
+  with_items: "{{ omz_plugins }}"
   loop_control:
     loop_var: "plugin"
 

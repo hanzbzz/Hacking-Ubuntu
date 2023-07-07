@@ -27,11 +27,6 @@
     repo: "https://github.com/lgandx/Responder"
     dest: "/opt/responder"
 
-- name: "Clone Impacket repo"
-  git:
-    repo: "https://github.com/fortra/impacket.git"
-    dest: "/opt/impacket"
-
 - name: "Clone seclists repo"
   become: true
   git:
@@ -46,3 +41,15 @@
 - name: "Install feroxbuster"
   shell: "curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh | bash -s $HOME/.local/bin"
   when: not feroxbuster_stat.stat.exists
+
+- name: "Check if Obsidian is installed"
+  stat: 
+    path : "/usr/bin/obsidian"
+  register: obsidian_stat
+
+
+- name: "Install Obsidian"
+  become: true
+  apt:
+    deb: "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.3.5/obsidian_1.3.5_amd64.deb"
+  when: not obsidian_stat.stat.exists

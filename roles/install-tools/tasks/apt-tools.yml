@@ -6,7 +6,7 @@
 - name: "Upgrade all packages"
   apt: upgrade=yes force_apt_get=yes
   become: true
-  
+
 - name: "Installing Packages"
   package:
     # selection of tools from https://www.kali.org/tools/
@@ -23,5 +23,7 @@
       - gobuster
       - ffuf
       - cewl
+      - tmux
+      - php
     state: latest
   become: true

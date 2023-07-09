@@ -25,5 +25,6 @@
       - cewl
       - tmux
       - php
+      - smbclient
     state: latest
   become: true

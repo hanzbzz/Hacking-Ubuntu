@@ -114,3 +114,7 @@ export PATH=$PATH:/home/{{ ansible_env.USER }}/.local/bin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#change ZSH Autosuggestions font color
+export TERM=xterm-256color
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'

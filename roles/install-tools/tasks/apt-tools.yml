@@ -26,5 +26,7 @@
       - tmux
       - php
       - smbclient
+      - snmp
+      - onesixtyone
     state: latest
   become: true

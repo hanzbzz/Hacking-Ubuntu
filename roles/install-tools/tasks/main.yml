@@ -1,5 +1,5 @@
 ---
-- include: "apt-tools.yml"
-- include: "git-tools.yml"
-- include: "gem-tools.yml"
-- include: "pip-tools.yml"
+- import_tasks: "apt-tools.yml"
+- import_tasks: "git-tools.yml"
+- import_tasks: "gem-tools.yml"
+- import_tasks: "pip-tools.yml"

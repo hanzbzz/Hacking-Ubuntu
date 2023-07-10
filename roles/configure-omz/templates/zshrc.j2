@@ -110,7 +110,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH=$PATH:/home/{{ ansible_env.USER }}/.local/bin
+export PATH=$PATH:/home/{{ ansible_env.USER }}/.local/bin:/home/{{ ansible_env.USER }}/.local/share/gem/ruby/3.0.0/bin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -6,3 +6,9 @@
     owner: "{{ ansible_env.USER }}"
     group: "{{ ansible_env.USER }}"
     mode: "0755"
+
+- name: "Mount VMware shared folders on startup"
+  become: true
+  lineinfile:
+    path: "/etc/fstab"
+    line: ".host:/    /mnt/hgfs/    fuse.vmhgfs-fuse    defaults,allow_other,uid=1000     0    0"

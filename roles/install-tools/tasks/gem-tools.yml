@@ -1,4 +1,9 @@
-- name: "Installing Packages"
+- name: "Installing wpscan"
   gem:
     name: "wpscan"
+    state: "present"
+
+- name: "Installing evil-winrm"
+  gem:
+    name: "evil-winrm"
     state: "present"

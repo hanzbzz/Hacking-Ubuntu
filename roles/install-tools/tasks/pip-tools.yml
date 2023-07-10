@@ -1,5 +1,5 @@
 ---
-- name: "Install dependencies"
+- name: "Install pipx dependencies"
   become: true
   apt:
     name:

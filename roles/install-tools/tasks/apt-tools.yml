@@ -7,7 +7,7 @@
   apt: upgrade=yes force_apt_get=yes
   become: true
 
-- name: "Installing Packages"
+- name: "Installing apt Packages"
   package:
     # selection of tools from https://www.kali.org/tools/
     name:
@@ -25,5 +25,9 @@
       - cewl
       - tmux
       - php
+      - smbclient
+      - snmp
+      - onesixtyone
+      - mysql-client
     state: latest
   become: true

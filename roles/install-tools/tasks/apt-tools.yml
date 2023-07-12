@@ -29,5 +29,8 @@
       - snmp
       - onesixtyone
       - mysql-client
+      - nfs-common
+      - jq
+      - whois
     state: latest
   become: true

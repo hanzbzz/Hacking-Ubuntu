@@ -24,3 +24,4 @@
       burpsuite_extras_dir: "{{ burpsuite_dir }}/extras"
     - role: "roles/setup-firefox"
     - role: "roles/install-tools"
+    - role: "roles/install-tophat"

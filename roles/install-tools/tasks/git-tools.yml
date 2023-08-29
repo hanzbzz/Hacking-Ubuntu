@@ -32,6 +32,8 @@
   git:
     name: "https://github.com/danielmiessler/SecLists.git"
     dest: "/usr/share/seclists"
+    # make sure that this command doesn't error once the rockyou.tar.gz is unzipped
+    update: false
 
 - name: "Check if feroxbuster is installed"
   stat: 

@@ -20,4 +20,4 @@
     - { name: 'impacket', url: 'git+https://github.com/fortra/impacket.git' }
     - { name: 'pypykatz', url: 'git+https://github.com/skelsec/pypykatz.git'}
     - { name: 'firefox_decrypt', url: 'git+https://github.com/unode/firefox_decrypt.git'}
-    
+    - { name: 'ldapdomaindump', url: 'git+https://github.com/dirkjanm/ldapdomaindump.git'}

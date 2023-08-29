@@ -1,0 +1,24 @@
+---
+- name: "Install prerequistites"
+  become: true
+  package:
+    name:
+      - gir1.2-gtop-2.0
+      - gnome-shell-extensions
+      - libgtop-2.0-11
+    state: latest
+
+- name: "Download TopHat release"
+  get_url:
+    url: "https://github.com/fflewddur/tophat/releases/latest/download/tophat@fflewddur.github.io.v11.shell-extension.zip"
+    dest: "/tmp/tophat.zip"
+  
+- name: Creat extension directory
+  file:
+    path: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io"
+    state: directory
+
+- name: "Unzip the release"
+  unarchive:
+    src: "/tmp/tophat.zip"
+    dest: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io"

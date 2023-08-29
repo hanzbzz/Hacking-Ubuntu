@@ -18,3 +18,13 @@ ansible-galaxy install -r requirements.yml
 ```
 ansible-playbook main.yml
 ```
+
+4. Once finished, restart the system
+```
+reboot
+```
+
+5. Enable the TopHat gnome extension
+```
+gnome-extensions enable tophat@fflewddur.github.io
+```

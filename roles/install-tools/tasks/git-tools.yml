@@ -32,6 +32,8 @@
   git:
     name: "https://github.com/danielmiessler/SecLists.git"
     dest: "/usr/share/seclists"
+    # make sure that this command doesn't error once the rockyou.tar.gz is unzipped
+    update: false
 
 - name: "Check if feroxbuster is installed"
   stat: 
@@ -58,13 +60,3 @@
   git:
     name: "https://github.com/urbanadventurer/username-anarchy.git"
     dest: "/opt/username-anarchy"
-
-- name: "Check if proxychains is installed"
-  stat: 
-    path : "/usr/local/bin/proxychains4"
-  register: proxychains_stat
-
-- name: "Install proxychains"
-  become: true
-  shell: "git clone https://github.com/haad/proxychains.git /opt/proxychains && cd /opt/proxychains && ./configure && make install"
-  when: not john_stat.stat.exists

@@ -9,7 +9,6 @@
 
 - name: "Installing apt Packages"
   package:
-    # selection of tools from https://www.kali.org/tools/
     name:
       - hydra
       - curl
@@ -32,5 +31,7 @@
       - nfs-common
       - jq
       - whois
+      - proxychains4
+      - freerdp2-x11
     state: latest
   become: true

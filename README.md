@@ -1,6 +1,6 @@
 # Custom Ubuntu build using Ansible
 
-The purpose of this project is to customize Ubuntu to contain the tools necesarry to play HackTheBox (HTB).
+The purpose of this project is to customize Ubuntu to contain the tools necesarry to be usable to compete in CTF events.
 
 ## Steps to install
 

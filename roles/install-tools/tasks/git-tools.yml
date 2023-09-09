@@ -60,3 +60,8 @@
   git:
     name: "https://github.com/urbanadventurer/username-anarchy.git"
     dest: "/opt/username-anarchy"
+
+- name: "Clone ntlm_theft repo"
+  git:
+    name: "https://github.com/Greenwolf/ntlm_theft.git"
+    dest: "/opt/ntlm_theft"

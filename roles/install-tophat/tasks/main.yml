@@ -10,7 +10,7 @@
 
 - name: "Download TopHat release"
   get_url:
-    url: "https://github.com/fflewddur/tophat/releases/latest/download/tophat@fflewddur.github.io.v11.shell-extension.zip"
+    url: "https://github.com/fflewddur/tophat/releases/download/v13/tophat@fflewddur.github.io.v13.shell-extension.zip"
     dest: "/tmp/tophat.zip"
   
 - name: Creat extension directory

@@ -33,5 +33,7 @@
       - whois
       - proxychains4
       - freerdp2-x11
+      - exiftool
+      - checksec
     state: latest
   become: true

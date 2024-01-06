@@ -17,3 +17,10 @@
   get_url:
     dest: "/opt/rockyou.txt"
     url: "https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt"
+
+- name: "Add ~/.local/bin to $PATH"
+  lineinfile: 
+    path:  "{{ ansible_env.HOME }}/.bashrc"
+    line: "export PATH=$PATH:{{ ansible_env.USER }}/.local/bin"
+    insertafter: EOF
+  

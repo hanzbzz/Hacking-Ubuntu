@@ -65,3 +65,15 @@
   git:
     name: "https://github.com/Greenwolf/ntlm_theft.git"
     dest: "/opt/ntlm_theft"
+
+- name: "Clone sherlock repo"
+  git: 
+    name: "https://github.com/sherlock-project/sherlock.git"
+    dest: "/opt/sherlock"
+
+- name: "Install sherlock dependencies"
+  pip:
+    requirements: "/opt/sherlock/requirements.txt"
+
+- name: "Install GEF"
+  shell: 'bash -c "$(wget https://gef.blah.cat/sh -O -)"'

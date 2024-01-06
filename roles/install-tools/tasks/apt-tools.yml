@@ -35,5 +35,6 @@
       - freerdp2-x11
       - exiftool
       - checksec
+      - openjdk-17-jdk
     state: latest
   become: true

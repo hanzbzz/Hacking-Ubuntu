@@ -77,3 +77,19 @@
 
 - name: "Install GEF"
   shell: 'bash -c "$(wget https://gef.blah.cat/sh -O -)"'
+
+- name: "Check if Ghidra is installed"
+  stat: 
+    path : "/opt/ghidra_11.0_PUBLIC/"
+  register: ghidra_stat
+
+- name: "Download and extract Ghidra"
+  unarchive:
+    remote_src: true
+    src: "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.0_build/ghidra_11.0_PUBLIC_20231222.zip"
+    dest: "/opt/"
+  when: not ghidra_stat
+- name: "Copy the ghidra_auto.py script"
+  copy: 
+    src: "files/ghidra_auto.py"
+    dest: "/opt/ghidra_auto.py"
